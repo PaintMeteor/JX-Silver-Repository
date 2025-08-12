@@ -1,0 +1,87 @@
+**********************************************************************
+|                                                                    |
+|                            How to code                             |
+|                                                                    |
+**********************************************************************
+
+    You will be using C# with Monogame to develop this project.
+
+    This project does not use classes because this project grows over time. 
+    We use dictionaries or structs to add reusable content. Remember playing with LEGO 
+    bricks? Dictionaries are like LEGOs. Classes cannot be taken apart, 
+    dictionaries can. Avoid object-oriented programming and stick to 
+    dictionaries and interfaces instead. People like to tell you to use 
+    objects for video-games, it's okay for smaller projects. Big games like
+    Minecraft or Fortnite don't use OOP.
+
+    You must be familiar with Linear Algebra and Algebra II.
+    You must have experience with arrays and dictionaries.
+    You must have experience with file systems.
+
+    Here's an example of a video-game player using the dictionary approach.
+    var player = new Dictionary<string, object> {
+        {"position", [1, 20]},
+        {"velocity", [5, 0]},
+        {"HP", [100, 100]},
+        {"controls", [0, 0]},
+        {"sprite", "hero"},
+        {"collision_radius", 5},
+        {"damage", 5},
+    }
+
+    Converting: (type)object.
+
+    Look through the code to see how I made it.
+
+
+    And don't forget to add the object to the scene space when you instantiate.
+
+**********************************************************************
+|                                                                    |
+|                            Requirements                            |
+|                                                                    |
+**********************************************************************
+
+    Visual Studio Code
+
+    Windows 10 and up
+
+    C# extension
+
+    .NET SDK 8.0
+
+    .NET runtime 8.0
+
+    Monogame
+
+    *How to install Monogame?
+
+    **VSCode.
+    Go to the extension store and install MonoGame for VS Code.
+
+    **Visual Studio Community Edition
+    Go to this website: https://docs.monogame.net/articles/getting_started/2_choosing_your_ide_visual_studio.html
+
+
+**********************************************************************
+|                                                                    |
+|                            Design                                  |
+|                                                                    |
+**********************************************************************
+
+J-X Silver is a sci-fi vertical shooter game where you collect silver to level up your ship and use it to
+buy upgrades. Upgrades like missiles, bomb, enemy health display, weapon charge, autopilot and temporary shield are meant
+to make the game easier, but they're not required. Owned upgrades are linked to all ships.
+You control the ship at 3 different speeds from 1st-3rd gear. The first gear comes to a solid stop.
+You can fire the weapon with the mouse and by tilting the right analog stick.
+
+There are 20 levels.
+
+The first and last level is the purple bad guy, Dr. Vandalia.
+The first level does not play boss music for Dr. Vandalia.
+Dr. Vandalia in level one is just an easy, predictable boss fight.
+
+The levels are made through a seed (random number); there's not much to do.
+
+There are four ships, Mandragora, Copernicus, Mondragon and Pottenger.
+Every level gives you up to 3 stars depending on your score.

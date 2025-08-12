@@ -1,0 +1,77 @@
+--------------------------------
+               HP
+--------------------------------
+
+A resource for storing HP.
+
+String: HP
+
+Type: int[2]
+
+Syntax: [current, max]
+
+--------------------------------
+            Sprite
+--------------------------------
+
+A graphic image rendered by the sprite batch.
+
+String: sprite
+
+Type: string
+
+--------------------------------
+            Position
+--------------------------------
+
+Stores an X and Y variable.
+
+String: position
+
+Type: float[2]
+
+Syntax: [X, Y]
+
+--------------------------------
+            Velocity
+--------------------------------
+
+Moves the object.
+
+String: custom_velocity
+
+Type: float[2]
+
+Syntax: [X, Y]
+
+--------------------------------
+            Rotation
+--------------------------------
+
+Rotates the sprite.
+
+String: rotation
+
+Type: float
+
+--------------------------------
+             Groups
+--------------------------------
+
+Assigns accessible groups.
+
+String: groups
+
+Type: HashSet<string>
+
+--------------------------------
+         Input Controls
+--------------------------------
+
+Allows peripheral input to be stored.
+
+String: input_controls
+
+Type: float[2]
+
+Syntax: [Unit X, Unit Y]

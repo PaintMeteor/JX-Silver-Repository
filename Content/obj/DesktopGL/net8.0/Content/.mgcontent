@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SourceFileCollection xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Profile>Reach</Profile>
+  <Platform>DesktopGL</Platform>
+  <Config />
+  <SourceFiles>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/BiviolumSmall.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/CopernicusSmall.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/FlashShader.fx</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/GameFont.spritefont</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXDisplayBar.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXMiniBullets.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverExplosion1.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/MandragoraSmall.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Mondragon.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/OrangeboxSmall.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/PixelPaintMeteorSprite.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Pottenger.png</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyDie1.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyHit.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot1.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot2.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot3.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot4.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/StarfieldTiles.png</File>
+  </SourceFiles>
+  <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+  </DestFiles>
+</SourceFileCollection>
