@@ -68,10 +68,6 @@ public interface GameState
             bool has_death_explosion = a.ContainsKey("death_explosion");
             bool has_death_sound = a.ContainsKey("death_sound");
 
-
-            //Index.
-            if (has_index) { a["entity_index"] = (int)i; }
-
             //Animation Loop;
             if (has_loop_animation)
             {
@@ -514,13 +510,20 @@ public interface GameState
             bool has_particle_color_curve = a.ContainsKey("particle_color_curve");
             bool has_lifetime = a.ContainsKey("lifetime");
             bool has_particle_size_curve = a.ContainsKey("particle_size_curve");
+            bool has_hp_decay_effect = a.ContainsKey("hp_decay_effect");
 
-            Effect effect_to_use = null;
+            Effect effect_to_use = EffectsLibrary.effects.Clone();
+
+
+            bool prevent_epilepsy = GlobalStuff.resources.ContainsKey("prevent_epilepsy");
+
+            effect_to_use.Parameters["alpha"].SetValue(1);
+            effect_to_use.Parameters["reveal_amount"].SetValue(1);
+            
 
             //Hurt effect.
-            if (has_flash_effect)
+            if (has_flash_effect && !prevent_epilepsy)
             {
-
                 Dictionary<string, object> attributes = (Dictionary<string, object>)a["hurt_flash"];
                 bool has_color = attributes.ContainsKey("color");
                 bool has_strength = attributes.ContainsKey("strength");
@@ -528,7 +531,7 @@ public interface GameState
 
                 if (has_time)
                 {
-                    effect_to_use = EffectsLibrary.flash_effect.Clone();
+
                     float[] time = (float[])attributes["time"];
                     float[] color = has_color ? (float[])attributes["color"] : new float[3] { 1, 1, 1 };
                     float strength = has_strength ? (float)attributes["strength"] : 1.0f;
@@ -539,26 +542,46 @@ public interface GameState
                     }
 
                     float mix_value = (time[0] / time[1]) * strength;
-                    effect_to_use.Parameters["color_r"].SetValue(color[0]);
-                    effect_to_use.Parameters["color_g"].SetValue(color[1]);
-                    effect_to_use.Parameters["color_b"].SetValue(color[2]);
-                    effect_to_use.Parameters["amount"].SetValue(mix_value);
+
+                    effect_to_use.Parameters["flash_color_r"].SetValue(color[0]);
+                    effect_to_use.Parameters["flash_color_g"].SetValue(color[1]);
+                    effect_to_use.Parameters["flash_color_b"].SetValue(color[2]);
+                    effect_to_use.Parameters["flash_amount"].SetValue(mix_value);
                 }
 
 
             }
 
-            //Draw score display.
-            if (has_score_display && has_position && has_score_display)
+            //HP decay effect.
+            if (has_hp_decay_effect && has_HP)
             {
-                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                float[] pos = (float[])a["position"];
-                spriteBatch.DrawString(SpriteLibrary.game_font, GlobalStuff.resources["score"].ToString(), new Microsoft.Xna.Framework.Vector2(
-                    pos[0], pos[1]), Microsoft.Xna.Framework.Color.White);
+                Dictionary<string, object> attributes = (Dictionary<string, object>)a["hp_decay_effect"];
+                int[] hp = (int[])a["HP"];
 
-                spriteBatch.End();
+                bool has_color = attributes.ContainsKey("color");
+
+                float mix_value = (float)1 - ((float)hp[0] / (float)hp[1]);
+
+                float[] color = has_color ? (float[])attributes["color"] : new float[3] { 1, 1, 1 };
+
+                effect_to_use.Parameters["tint_r"].SetValue(color[0]);
+                effect_to_use.Parameters["tint_g"].SetValue(color[1]);
+                effect_to_use.Parameters["tint_b"].SetValue(color[2]);
+                effect_to_use.Parameters["tint_amount"]?.SetValue(mix_value);
 
             }
+
+            //Draw score display.
+                if (has_score_display && has_position && has_score_display)
+                {
+                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
+                    float[] pos = (float[])a["position"];
+                    spriteBatch.DrawString(SpriteLibrary.game_font, GlobalStuff.resources["score"].ToString(), new Microsoft.Xna.Framework.Vector2(
+                        pos[0], pos[1]), Microsoft.Xna.Framework.Color.White);
+
+                    spriteBatch.End();
+
+                }
 
             //Draw sprite.
             if (has_sprite && has_position)

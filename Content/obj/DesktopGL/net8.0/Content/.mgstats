@@ -1,7 +1,7 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
 "C:/Users/dell/Monogame/JXSilver/JXSilver/Content/BiviolumSmall.png","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/BiviolumSmall.xnb","TextureProcessor","Texture2DContent",413,1365,0.623351
 "C:/Users/dell/Monogame/JXSilver/JXSilver/Content/CopernicusSmall.png","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/CopernicusSmall.xnb","TextureProcessor","Texture2DContent",560,2133,0.1473515
-"C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/FlashShader.fx","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/Effects/FlashShader.xnb","EffectProcessor","CompiledEffectContent",1252,1239,2.0896611
+"C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/EveryEffect.fx","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/Effects/EveryEffect.xnb","EffectProcessor","CompiledEffectContent",1945,2054,0.3852582
 "C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXDisplayBar.png","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/JXDisplayBar.xnb","TextureProcessor","Texture2DContent",239,3541,0.1469302
 "C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXMiniBullets.png","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/JXMiniBullets.xnb","TextureProcessor","Texture2DContent",1611,18517,1.6047682
 "C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverExplosion1.png","C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/JXSilverExplosion1.xnb","TextureProcessor","Texture2DContent",1333,27733,0.1320932

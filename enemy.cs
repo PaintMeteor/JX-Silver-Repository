@@ -38,6 +38,10 @@ public class EnemyLibrary
         res.Add("HP", new int[2] { 12, 12 });
         res.Add("sprite", "orangebox_sprite");
         res.Add("custom_velocity", new float[2] { 0, 20 + r.NextSingle() * 50 });
+        res.Add("hp_decay_effect", new Dictionary<string, object>
+        {
+            {"color", new float[3] {1, 0, 0}}
+        });
 
         res.Add("death_explosion", null);
 

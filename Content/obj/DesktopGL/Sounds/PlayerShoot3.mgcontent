@@ -3,7 +3,7 @@
   <SourceFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot3.wav</SourceFile>
   <SourceTime>2025-01-04T15:16:29.0231818-05:00</SourceTime>
   <DestFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Sounds/PlayerShoot3.xnb</DestFile>
-  <DestTime>2025-08-03T20:17:15.2189519-04:00</DestTime>
+  <DestTime>2025-08-14T15:06:20.5308983-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

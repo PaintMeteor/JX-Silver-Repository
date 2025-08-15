@@ -98,7 +98,8 @@ public class Game1 : Game
         SoundLibrary.sounds.Add("enemy_die", Content.Load<SoundEffect>("Sounds/EnemyDie1"));
 
         //Load effects.
-        EffectsLibrary.flash_effect = Content.Load<Effect>("Effects/FlashShader");
+        EffectsLibrary.effects = Content.Load<Effect>("Effects/EveryEffect");
+        
         
         this._mainTarget = new RenderTarget2D(GraphicsDevice, WindowProperties.window_width, WindowProperties.window_height);
         setRectangleDestination();
@@ -125,8 +126,8 @@ public class Game1 : Game
         
         GraphicsDevice.SetRenderTarget(_mainTarget);
         GraphicsDevice.Clear(Color.Olive);
-        
-        
+
+
         //Draw the main game.
         states.Peek().draw(this._spriteBatch);
 

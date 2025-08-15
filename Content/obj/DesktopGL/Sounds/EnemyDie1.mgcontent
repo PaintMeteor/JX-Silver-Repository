@@ -3,7 +3,7 @@
   <SourceFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyDie1.wav</SourceFile>
   <SourceTime>2025-08-11T18:50:44.1467452-04:00</SourceTime>
   <DestFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Sounds/EnemyDie1.xnb</DestFile>
-  <DestTime>2025-08-11T21:49:40.8620038-04:00</DestTime>
+  <DestTime>2025-08-14T15:06:19.77643-04:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

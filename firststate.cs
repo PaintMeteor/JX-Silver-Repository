@@ -47,7 +47,7 @@ public class FirstState : GameState
         Guid guid = Guid.NewGuid();
         enemy_spawner.Add("UID", guid.ToString());
         GlobalStuff.sceneSpace.Add(enemy_spawner);
-
+        
         GlobalStuff.resources.Add("score", (int)0);
         GlobalStuff.resources.Add("difficulty", (int)1);
         GlobalStuff.resources.Add("spawner_seed", new Random(1103100));

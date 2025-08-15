@@ -42,3 +42,5 @@ C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Effects\FlashS
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\EnemyHit.xnb
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverExplosion1.xnb
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\EnemyDie1.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\obj\Debug\net8.0\JXSilver.sourcelink.json
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Effects\EveryEffect.xnb

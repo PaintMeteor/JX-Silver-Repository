@@ -37,11 +37,11 @@
 /processorParam:TextureFormat=Color
 /build:CopernicusSmall.png
 
-#begin Effects/FlashShader.fx
+#begin Effects/EveryEffect.fx
 /importer:EffectImporter
 /processor:EffectProcessor
 /processorParam:DebugMode=Auto
-/build:Effects/FlashShader.fx
+/build:Effects/EveryEffect.fx
 
 #begin GameFont.spritefont
 /importer:FontDescriptionImporter

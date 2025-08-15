@@ -7,6 +7,6 @@ namespace EffectsList;
 
 public class EffectsLibrary
 {
-    public static Effect flash_effect;
+    public static Effect effects;
     
 }

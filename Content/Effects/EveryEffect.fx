@@ -9,6 +9,22 @@
 
 Texture2D SpriteTexture;
 
+uniform float flash_amount = 1.f;
+
+uniform float tint_r = 1.f;
+uniform float tint_g = 1.f;
+uniform float tint_b = 1.f;
+
+uniform float flash_color_r = 0.f;
+uniform float flash_color_g = 0.f;
+uniform float flash_color_b = 0.f;
+
+uniform float tint_amount = 0.f;
+
+uniform float alpha = 1.f;
+
+uniform float reveal_amount = 1.f;
+
 sampler2D SpriteTextureSampler = sampler_state
 {
 	Texture = <SpriteTexture>;
@@ -31,23 +47,39 @@ float3 mix_color(float3 color1 : COLOR, float3 color2 : COLOR, float strength) :
 	return float3(mix_r, mix_g, mix_b);
 }
 
-float amount = 1.f;
 
-float color_r = 0.f;
-float color_g = 0.f;
-float color_b = 0.f; 
 
 float4 MainPS(VertexShaderOutput input) : COLOR
 {
 	float4 color = tex2D(SpriteTextureSampler,input.TextureCoordinates) * input.Color;
-	float3 mixed = float3(color_r,color_g,color_b);
+	float3 mixed = float3(flash_color_r, flash_color_g, flash_color_b);
 
+	//First operation.
+	float3 tinting = float3(tint_r, tint_g, tint_b);
 
-	color.rgb = mix_color(color.rgb, mixed, amount);
+	float avg = (color.r + color.g + color.b) / 3.f;
+
+	color.rgb = mix_color(color.rgb, float3(avg, avg, avg) * tinting, tint_amount);
+
+	//Second operation.
+	color.rgb = mix_color(color.rgb, mixed, flash_amount);
+
+	//Third operation.
+	
+	color.a *= alpha; //Don't set, multiply instead.
+
+	//Fourth operation.
+	if (input.TextureCoordinates.y > reveal_amount)
+	{
+		color.a *= 0.f;
+	}
+
+	
 	return color;
 }
 
-technique SpriteDrawing
+
+technique FlashDrawing
 {
 	pass P0
 	{

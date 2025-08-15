@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/FlashShader.fx</SourceFile>
-  <SourceTime>2025-08-05T20:36:09.9890049-04:00</SourceTime>
+  <SourceTime>2025-08-14T16:53:44.5376544-04:00</SourceTime>
   <DestFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Effects/FlashShader.xnb</DestFile>
-  <DestTime>2025-08-05T22:40:19.0684781-04:00</DestTime>
+  <DestTime>2025-08-14T16:56:13.455066-04:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>EffectProcessor</Processor>
