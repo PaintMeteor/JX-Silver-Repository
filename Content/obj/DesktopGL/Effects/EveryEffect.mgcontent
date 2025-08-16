@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <SourceFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/EveryEffect.fx</SourceFile>
-  <SourceTime>2025-08-14T22:17:19.4572061-04:00</SourceTime>
+  <SourceTime>2025-08-14T22:29:11.1578885-04:00</SourceTime>
   <DestFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Effects/EveryEffect.xnb</DestFile>
-  <DestTime>2025-08-14T22:17:38.5619496-04:00</DestTime>
+  <DestTime>2025-08-15T00:01:53.123573-04:00</DestTime>
   <Importer>EffectImporter</Importer>
   <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
   <Processor>EffectProcessor</Processor>

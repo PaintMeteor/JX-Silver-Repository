@@ -11,6 +11,7 @@ using Global;
 using SoundList;
 using Microsoft.Xna.Framework.Audio;
 using EffectsList;
+using Microsoft.Xna.Framework.Media;
 
 namespace JXSilver;
 
@@ -51,18 +52,29 @@ public class Game1 : Game
 
     public void setRectangleDestination()
     {
+        //Integer scaling.
+
         var screenSize = GraphicsDevice.PresentationParameters.Bounds;
 
-        float scaleX = (float)screenSize.Width / _mainTarget.Width;
-        float scaleY = (float)screenSize.Height / _mainTarget.Height;
-        float scale = Math.Min(scaleX, scaleY);
+        //float scaleX = (float)screenSize.Width / _mainTarget.Width;
+        //float scaleY = (float)screenSize.Height / _mainTarget.Height;
 
-        int newWidth = (int)(_mainTarget.Width * scale);
-        int newHeight = (int)(_mainTarget.Height * scale);
+        int scaleFactor = (int)Math.Min(screenSize.Width / WindowProperties.window_width,
+                                        screenSize.Height / WindowProperties.window_height);
+
+        //float scale = Math.Min(scaleX, scaleY);
+
+        
+
+        int newWidth = (int)(_mainTarget.Width * scaleFactor);
+        int newHeight = (int)(_mainTarget.Height * scaleFactor);
 
         int posX = (screenSize.Width - newWidth) / 2;
         int posY = (screenSize.Height - newHeight) / 2;
+
+
         this.screen_rect = new Rectangle(posX, posY, newWidth, newHeight);
+        
 
     }
 
@@ -88,6 +100,8 @@ public class Game1 : Game
         SpriteLibrary.biviolum_tex = Content.Load<Texture2D>("BiviolumSmall");
         SpriteLibrary.display_bar_tex = Content.Load<Texture2D>("JXDisplayBar");
         SpriteLibrary.explosion = Content.Load<Texture2D>("JXSilverExplosion1");
+        SpriteLibrary.UI_tex = Content.Load<Texture2D>("JXSilverUI");
+        SpriteLibrary.num_font = Content.Load<SpriteFont>("SmallNumbers");
 
         //Load sounds.
         SoundLibrary.sounds.Add("mand_shoot_sound", Content.Load<SoundEffect>("Sounds/PlayerShoot1"));
@@ -97,16 +111,29 @@ public class Game1 : Game
         SoundLibrary.sounds.Add("enemy_hurt", Content.Load<SoundEffect>("Sounds/EnemyHit"));
         SoundLibrary.sounds.Add("enemy_die", Content.Load<SoundEffect>("Sounds/EnemyDie1"));
 
+        //Load music.
+        MusicLibrary.songs.Add("theme_song", Content.Load<Song>("Music/JXSilverTheme2025"));
+
         //Load effects.
         EffectsLibrary.effects = Content.Load<Effect>("Effects/EveryEffect");
-        
-        
+
+        SamplerState custom_sampler = new SamplerState()
+        {
+        Filter = TextureFilter.Anisotropic,
+        AddressU = TextureAddressMode.Wrap,
+        AddressV = TextureAddressMode.Clamp,
+        MaxAnisotropy = 4
+        };
+
+        GraphicsDevice.SamplerStates[0] = custom_sampler;
+
+
         this._mainTarget = new RenderTarget2D(GraphicsDevice, WindowProperties.window_width, WindowProperties.window_height);
         setRectangleDestination();
 
-        
-        FirstState s = new FirstState();
-        states.Push(s);
+        SplashScreen splashScreen = new SplashScreen();
+        states.Push(splashScreen);
+        states.Peek().Init();
         // TODO: use this.Content to load your game content here
     }
 
@@ -134,7 +161,7 @@ public class Game1 : Game
         GraphicsDevice.SetRenderTarget(null);
         GraphicsDevice.Clear(Color.Black);
         
-        _spriteBatch.Begin();
+        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
         _spriteBatch.Draw(_mainTarget, this.screen_rect, Color.White);
         _spriteBatch.End();
 

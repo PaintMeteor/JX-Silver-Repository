@@ -20,7 +20,6 @@ using System.Reflection.Emit;
 using Microsoft.Xna.Framework.Audio;
 using SoundList;
 using System.Threading;
-using GameProcess;
 using System.Security.Cryptography.X509Certificates;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -30,17 +29,23 @@ using EffectsList;
 
 
 namespace NSGameState;
-public interface GameState
+public class GameState
 {
-   public void update(float dt)
+
+    public List<Dictionary<string, object>> sceneSpace = new List<Dictionary<string, object>>(); //The list of actors being used.
+    public virtual void Init()
+    {
+
+    }
+   public virtual void update(float dt)
     {
         Random rng = new Random();
 
         int actorLoopIDX = 0;
 
-        for (int i = 0; i < GlobalStuff.sceneSpace.ToArray().Length; i++)
+        for (int i = 0; i < sceneSpace.ToArray().Length; i++)
         {
-            Dictionary<string, object> a = (Dictionary<string, object>)GlobalStuff.sceneSpace[i];
+            Dictionary<string, object> a = (Dictionary<string, object>)sceneSpace[i];
 
             bool has_firing_sound = a.ContainsKey("firing_sound");
             bool has_input_controls = a.ContainsKey("input_controls");
@@ -97,24 +102,24 @@ public interface GameState
                 }
             }
             //Velocity.
-                if (has_custom_velocity && has_position)
-                {
-                    float[] pos = (float[])a["position"];
-                    float[] vel = (float[])a["custom_velocity"];
-                    float[] normal = FunctionLibrary.normalize(vel[0], vel[1]);
-                    float vel_length = FunctionLibrary.length(vel[0], vel[1]);
+            if (has_custom_velocity && has_position)
+            {
+                float[] pos = (float[])a["position"];
+                float[] vel = (float[])a["custom_velocity"];
+                float[] normal = FunctionLibrary.normalize(vel[0], vel[1]);
+                float vel_length = FunctionLibrary.length(vel[0], vel[1]);
 
 
-                    //Normalize.
-                    float nx = vel_length > 0 ? Math.Abs(normal[0]) * vel[0] : vel[0];
-                    float ny = vel_length > 0 ? Math.Abs(normal[1]) * vel[1] : vel[1];
-                    pos[0] += nx * dt;
-                    pos[1] += ny * dt;
+                //Normalize.
+                float nx = vel_length > 0 ? Math.Abs(normal[0]) * vel[0] : vel[0];
+                float ny = vel_length > 0 ? Math.Abs(normal[1]) * vel[1] : vel[1];
+                pos[0] += nx * dt;
+                pos[1] += ny * dt;
 
-                    a["position"] = new float[2] { pos[0], pos[1] };
+                a["position"] = new float[2] { pos[0], pos[1] };
 
 
-                }
+            }
 
             //Enemy spawner.
             if (has_en_spawner)
@@ -147,7 +152,7 @@ public interface GameState
                                 {"level", 1}
                             };
                             Dictionary<string, object> obox = Enemy.EnemyLibrary.OrangeBox(config);
-                            GlobalStuff.sceneSpace.Add(obox);
+                            sceneSpace.Add(obox);
 
                         }
                         cd[0] = 0;
@@ -302,50 +307,50 @@ public interface GameState
                 //Outside?
                 if (pos[0] < -margin[2] || pos[0] > WindowProperties.window_width + margin[3] || pos[1] < -margin[0] || pos[1] > WindowProperties.window_height + margin[1])
                 {
-                    GlobalStuff.sceneSpace.Remove(a);
+                    sceneSpace.Remove(a);
                 }
             }
 
             //Damage target.
-                if (has_damage_target)
+            if (has_damage_target)
+            {
+                Dictionary<string, object> att = (Dictionary<string, object>)a["hitbox"];
+                bool has_objects = att.ContainsKey("objects");
+                int dmg = a.ContainsKey("damage") ? (int)a["damage"] : 1;
+                HashSet<string> dmg_tgt = (HashSet<string>)a["damage_target"];
+
+                if (has_objects)
                 {
-                    Dictionary<string, object> att = (Dictionary<string, object>)a["hitbox"];
-                    bool has_objects = att.ContainsKey("objects");
-                    int dmg = a.ContainsKey("damage") ? (int)a["damage"] : 1;
-                    HashSet<string> dmg_tgt = (HashSet<string>)a["damage_target"];
+                    List<Dictionary<string, object>> objects = (List<Dictionary<string, object>>)att["objects"];
 
-                    if (has_objects)
+                    for (int j = 0; j < objects.ToArray().Length; j++)
                     {
-                        List<Dictionary<string, object>> objects = (List<Dictionary<string, object>>)att["objects"];
-
-                        for (int j = 0; j < objects.ToArray().Length; j++)
+                        HashSet<string> matches = (HashSet<string>)objects[j]["groups"];
+                        Dictionary<string, object> victim = objects[j];
+                        //Is there a similar item inside the array?
+                        if (matches.Intersect(dmg_tgt).ToArray().Length > 0)
                         {
-                            HashSet<string> matches = (HashSet<string>)objects[j]["groups"];
-                            Dictionary<string, object> victim = objects[j];
-                            //Is there a similar item inside the array?
-                            if (matches.Intersect(dmg_tgt).ToArray().Length > 0)
+
+                            FunctionLibrary.damage_entity(ref victim, dmg);
+                            if (has_delete_on_damage)
                             {
-
-                                FunctionLibrary.damage_entity(ref victim, dmg);
-                                if (has_delete_on_damage)
-                                {
-                                    GlobalStuff.sceneSpace.Remove(a);
-                                    continue;
-                                }
-
+                                sceneSpace.Remove(a);
+                                continue;
                             }
-                        }
 
+                        }
                     }
+
                 }
+            }
 
             //HP and death.
-                if (has_hp)
-                {
-                    int[] hp = (int[])a["HP"];
+            if (has_hp)
+            {
+                int[] hp = (int[])a["HP"];
                 if (hp[0] <= 0)
                 {
-                    GlobalStuff.sceneSpace.Remove(a);
+                    sceneSpace.Remove(a);
 
                     int pts = a.ContainsKey("points_on_death") ? (int)a["points_on_death"] : 0;
                     if (GlobalStuff.resources.ContainsKey("score"))
@@ -365,7 +370,7 @@ public interface GameState
                     }
 
                 }
-                }
+            }
             //Lifetime.
             if (has_lifetime)
             {
@@ -374,7 +379,7 @@ public interface GameState
                 if ((float)a["lifetime"] <= 0)
                 {
                     //Delete.
-                    GlobalStuff.sceneSpace.Remove(a);
+                    sceneSpace.Remove(a);
                 }
             }
 
@@ -392,7 +397,7 @@ public interface GameState
 
                         Dictionary<string, object> b = FunctionLibrary.fire_weapon((string)a["weapon"]);
                         b["position"] = new float[2] { position[0], position[1] };
-                        GlobalStuff.sceneSpace.Add(b);
+                        sceneSpace.Add(b);
 
                         if (has_firing_sound) { SoundLibrary.sounds[(string)a["firing_sound"]].Play(); }
                     }
@@ -423,7 +428,7 @@ public interface GameState
                             time_array[0] = 0;
                             Dictionary<string, object> b = FunctionLibrary.fire_weapon((string)a["weapon"]);
                             b["position"] = new float[2] { position[0], position[1] };
-                            GlobalStuff.sceneSpace.Add(b);
+                            sceneSpace.Add(b);
 
                             if (has_firing_sound)
                             {
@@ -449,11 +454,11 @@ public interface GameState
         }
     }
 
-    public void collide()
+    public virtual void collide()
     {
-        for (int i = 0; i < GlobalStuff.sceneSpace.ToArray().Length; i++)
+        for (int i = 0; i < sceneSpace.ToArray().Length; i++)
         {
-            Dictionary<string, object> actor = GlobalStuff.sceneSpace[i];
+            Dictionary<string, object> actor = sceneSpace[i];
             HashSet<string> groups_collided = new HashSet<string>();
             bool has_hitbox = actor.ContainsKey("hitbox");
             if (!has_hitbox) { continue; }
@@ -461,7 +466,7 @@ public interface GameState
             bool has_objects_colliding = main_hbox.ContainsKey("objects");
 
             //Get a list of actors colliding, excluding itself.
-            List<Dictionary<string, object>> colliding_actors = GlobalStuff.sceneSpace.Where(
+            List<Dictionary<string, object>> colliding_actors = sceneSpace.Where(
                 a => a.ContainsKey("position") && a.ContainsKey("hitbox") && FunctionLibrary.objectCollideWithOther(actor, a) && !a.Equals(actor)
             ).ToList();
 
@@ -476,12 +481,12 @@ public interface GameState
             if (has_objects_colliding) { main_hbox["objects"] = colliding_actors; }
         }
     }
-    public void draw(SpriteBatch spriteBatch)
+    public virtual void draw(SpriteBatch spriteBatch)
     {
 
         //Z indexes.
         Dictionary<Dictionary<string, object>, int> z_indexes = new Dictionary<Dictionary<string, object>, int>();
-        foreach (Dictionary<string, object> a in GlobalStuff.sceneSpace.ToArray())
+        foreach (Dictionary<string, object> a in sceneSpace.ToArray())
         {
             bool has_z_index = a.ContainsKey("z-index");
 
@@ -511,6 +516,7 @@ public interface GameState
             bool has_lifetime = a.ContainsKey("lifetime");
             bool has_particle_size_curve = a.ContainsKey("particle_size_curve");
             bool has_hp_decay_effect = a.ContainsKey("hp_decay_effect");
+            bool has_ninepatch = a.ContainsKey("ninepatch");
 
             Effect effect_to_use = EffectsLibrary.effects.Clone();
 
@@ -519,7 +525,9 @@ public interface GameState
 
             effect_to_use.Parameters["alpha"].SetValue(1);
             effect_to_use.Parameters["reveal_amount"].SetValue(1);
+
             
+
 
             //Hurt effect.
             if (has_flash_effect && !prevent_epilepsy)
@@ -571,17 +579,32 @@ public interface GameState
 
             }
 
+            //Draw ninepatch.
+            if (has_ninepatch && has_position)
+            {
+                Dictionary<string, object> attributes = (Dictionary<string, object>)a["ninepatch"];
+                bool has_size_0 = attributes.ContainsKey("size");
+                bool has_color = attributes.ContainsKey("color");
+                float[] pos = (float[])a["position"];
+                float[] clr = has_color ? (float[])attributes["color"] : new float[3] {1, 1, 1};
+                int[] sz_0 = has_size_0 ? (int[])attributes["size"] : new int[2] { 0, 0 };
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
+                HUD.Ninepatch.draw_rect(spriteBatch, (int)pos[0], (int)pos[0], sz_0[0], sz_0[1], clr);
+                spriteBatch.End();
+
+            }
+
             //Draw score display.
-                if (has_score_display && has_position && has_score_display)
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    float[] pos = (float[])a["position"];
-                    spriteBatch.DrawString(SpriteLibrary.game_font, GlobalStuff.resources["score"].ToString(), new Microsoft.Xna.Framework.Vector2(
-                        pos[0], pos[1]), Microsoft.Xna.Framework.Color.White);
+            if (has_score_display && has_position)
+            {
+                spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
+                float[] pos = (float[])a["position"];
+                spriteBatch.DrawString(SpriteLibrary.num_font, GlobalStuff.resources["score"].ToString(), new Microsoft.Xna.Framework.Vector2(
+                    pos[0], pos[1]), Microsoft.Xna.Framework.Color.White);
 
-                    spriteBatch.End();
+                spriteBatch.End();
 
-                }
+            }
 
             //Draw sprite.
             if (has_sprite && has_position)
@@ -817,7 +840,7 @@ public interface GameState
                 }
 
             }
-            
+
             //Draw health bar.
             if (has_health_bar && has_position && has_HP)
             {
@@ -835,7 +858,7 @@ public interface GameState
                     int width = (int)attributes["width"];
                     HUD.Bars.draw_bar2(spriteBatch, (int)pos[0] + offset[0] - width, (int)pos[1] + offset[1], width * 2, (int)(((float)hp[0] / (float)hp[1]) * width * 2));
                 }
-                
+
                 spriteBatch.End();
             }
         }

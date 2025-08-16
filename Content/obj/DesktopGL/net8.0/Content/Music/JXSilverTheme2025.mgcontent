@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Music/JXSilverTheme2025.mp3</SourceFile>
+  <SourceTime>2025-08-15T00:01:15.4843052-04:00</SourceTime>
+  <DestFile>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/Music/JXSilverTheme2025.xnb</DestFile>
+  <DestTime>2025-08-15T00:11:11.8952833-04:00</DestTime>
+  <Importer>Mp3Importer</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>SongProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput>
+    <string>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Content/Music/JXSilverTheme2025.ogg</string>
+  </BuildOutput>
+</PipelineBuildEvent>

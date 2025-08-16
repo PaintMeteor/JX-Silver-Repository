@@ -25,6 +25,10 @@ public class SpriteLibrary
 
     public static Texture2D orangebox_tex;
 
+    public static Texture2D UI_tex;
+
+    public static SpriteFont num_font;
+
     public static Texture2D display_bar_tex;
 
     public static Texture2D biviolum_tex;

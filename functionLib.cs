@@ -15,6 +15,7 @@ using SoundList;
 using Microsoft.Xna.Framework.Audio;
 using System.Linq;
 using System.Security.Cryptography;
+using NSGameState;
 
 namespace Tools;
 
@@ -30,7 +31,7 @@ public class FunctionLibrary()
     {
         List<Dictionary<string, object>> li = new List<Dictionary<string, object>>();
 
-        foreach (Dictionary<string, object> a in GlobalStuff.sceneSpace.ToArray())
+        foreach (Dictionary<string, object> a in GlobalStuff.gameStateStack.Peek().sceneSpace.ToArray())
         {
             if (a.ContainsKey("groups"))
             {
@@ -93,6 +94,17 @@ public class FunctionLibrary()
     public static float length(float x, float y)
     {
         return (float)Math.Sqrt(x * x + y * y);
+    }
+
+    public static void new_scene(GameState next)
+    {
+        GlobalStuff.gameStateStack.Push(next);
+        GlobalStuff.gameStateStack.Peek().Init();
+    }
+
+    public static void previous_state()
+    {
+        GlobalStuff.gameStateStack.Pop();
     }
 
     public static Dictionary<string, object> fire_weapon(string val)
@@ -214,7 +226,7 @@ public class FunctionLibrary()
             Guid guid = Guid.NewGuid();
             ptc.Add("UID", guid.ToString());
 
-            GlobalStuff.sceneSpace.Add(ptc);
+            GlobalStuff.gameStateStack.Peek().sceneSpace.Add(ptc);
         
         }
     }

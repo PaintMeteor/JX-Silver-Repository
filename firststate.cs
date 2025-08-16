@@ -20,17 +20,17 @@ using System.Reflection.Emit;
 using Microsoft.Xna.Framework.Audio;
 using SoundList;
 using System.Threading;
-using GameProcess;
+using Microsoft.Xna.Framework.Media;
 
 namespace states;
 
 public class FirstState : GameState
 {
 
-    public FirstState()
+    public override void Init()
     {
         Dictionary<string, object> p = Player.PlayerCreator.Mandragora();
-        GlobalStuff.sceneSpace.Add(p);
+        sceneSpace.Add(p);
         Dictionary<string, object> enemy_spawner = new Dictionary<string, object>();
         Dictionary<string, object> spawner_data = new Dictionary<string, object>();
 
@@ -46,23 +46,40 @@ public class FirstState : GameState
         //Add globally unique identifier.
         Guid guid = Guid.NewGuid();
         enemy_spawner.Add("UID", guid.ToString());
-        GlobalStuff.sceneSpace.Add(enemy_spawner);
-        
+        sceneSpace.Add(enemy_spawner);
+
         GlobalStuff.resources.Add("score", (int)0);
         GlobalStuff.resources.Add("difficulty", (int)1);
         GlobalStuff.resources.Add("spawner_seed", new Random(1103100));
         GlobalStuff.resources.Add("combo", (int)0);
 
+        //Play music.
+        MediaPlayer.IsRepeating = true;
+        MediaPlayer.Volume = 0.6f;
+        if (MediaPlayer.State == MediaState.Playing)
+        {
+            MediaPlayer.Stop();
+        }
+
+        MediaPlayer.Play(MusicLibrary.songs["theme_song"]);
+
         Dictionary<string, object> score = new Dictionary<string, object>();
         //Add globally unique identifier.
         Guid guid2 = Guid.NewGuid();
         score.Add("UID", guid2.ToString());
+
+        //Add ninepatch.
+        Dictionary<string, object> np = new Dictionary<string, object>()
+        {
+            {"size", new int[2] {64, 14} },
+            {"color", new float[3] {1, 0, 0}},
+        };
+
+        score.Add("ninepatch", np);
         score.Add("display_score", true);
-        score.Add("position", new float[2] { 8, 8 });
+        score.Add("position", new float[2] { 9, 8 });
         score.Add("z-index", 999);
-        GlobalStuff.sceneSpace.Add(score);
+        sceneSpace.Add(score);
     }
 
-
-    
 }

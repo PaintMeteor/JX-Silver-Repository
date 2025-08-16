@@ -11,11 +11,16 @@
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXDisplayBar.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXMiniBullets.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverExplosion1.png</File>
+    <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverRedone.png</File>
+    <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverUI.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/MandragoraSmall.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Mondragon.png</File>
+    <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Music/JXSilverMenu4.mp3</File>
+    <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Music/JXSilverTheme2025.mp3</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/OrangeboxSmall.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/PixelPaintMeteorSprite.png</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Pottenger.png</File>
+    <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/SmallNumbers.spritefont</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyDie1.wav</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyHit.wav</File>
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot1.wav</File>
@@ -25,6 +30,11 @@
     <File>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/StarfieldTiles.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

@@ -20,7 +20,6 @@ using System.Reflection.Emit;
 using Microsoft.Xna.Framework.Audio;
 using SoundList;
 using System.Threading;
-using GameProcess;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Enemy;
@@ -38,7 +37,7 @@ public class EnemyLibrary
         res.Add("HP", new int[2] { 12, 12 });
         res.Add("sprite", "orangebox_sprite");
         res.Add("custom_velocity", new float[2] { 0, 20 + r.NextSingle() * 50 });
-        res.Add("hp_decay_effect", new Dictionary<string, object>
+        res.Add("hp_decay_effect", new Dictionary<string, object>()
         {
             {"color", new float[3] {1, 0, 0}}
         });

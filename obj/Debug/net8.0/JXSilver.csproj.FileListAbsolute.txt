@@ -44,3 +44,10 @@ C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverExplos
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\EnemyDie1.xnb
 C:\Users\dell\Monogame\JXSilver\JXSilver\obj\Debug\net8.0\JXSilver.sourcelink.json
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Effects\EveryEffect.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Music\JXSilverMenu4.ogg
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Music\JXSilverMenu4.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Music\JXSilverTheme2025.ogg
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Music\JXSilverTheme2025.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverRedone.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverUI.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\SmallNumbers.xnb
