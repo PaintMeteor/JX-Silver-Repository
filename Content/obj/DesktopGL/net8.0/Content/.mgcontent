@@ -8,6 +8,7 @@
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/CopernicusSmall.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Effects/EveryEffect.fx</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/GameFont.spritefont</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JX-Jets.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXDisplayBar.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXMiniBullets.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/JXSilverExplosion1.png</File>
@@ -21,15 +22,34 @@
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/PixelPaintMeteorSprite.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Pottenger.png</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/SmallNumbers.spritefont</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/Accept.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/Cursor1.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyDie1.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyFire1.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyFireBig.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/EnemyHit.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerBomb1.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerBomb2.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerBomb3.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerBomb4.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot1.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot2.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot3.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerShoot4.wav</File>
+    <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/Powerup.wav</File>
     <File>C:/Users/dell/Monogame/JXSilver/JXSilver/Content/StarfieldTiles.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

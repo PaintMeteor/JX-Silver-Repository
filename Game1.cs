@@ -12,6 +12,10 @@ using SoundList;
 using Microsoft.Xna.Framework.Audio;
 using EffectsList;
 using Microsoft.Xna.Framework.Media;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+using System.Linq;
 
 namespace JXSilver;
 
@@ -27,10 +31,10 @@ public class Game1 : Game
     private Stack<GameState> states;
     public Game1()
     {
-        WindowProperties.window_width = 192;
+        WindowProperties.window_width = 256;
         WindowProperties.window_height = 400;
         _graphics = new GraphicsDeviceManager(this);
-        this._graphics.PreferredBackBufferWidth = 192;
+        this._graphics.PreferredBackBufferWidth = 256;
         this._graphics.PreferredBackBufferHeight = 400;
         Content.RootDirectory = "Content";
         IsMouseVisible = true;
@@ -44,6 +48,8 @@ public class Game1 : Game
         GlobalStuff.gameStateStack = this.states;
 
     }
+
+    
 
     private void OnClientSizeChanged(object sender, EventArgs e)
     {
@@ -110,6 +116,7 @@ public class Game1 : Game
         SoundLibrary.sounds.Add("pott_shoot_sound", Content.Load<SoundEffect>("Sounds/PlayerShoot4"));
         SoundLibrary.sounds.Add("enemy_hurt", Content.Load<SoundEffect>("Sounds/EnemyHit"));
         SoundLibrary.sounds.Add("enemy_die", Content.Load<SoundEffect>("Sounds/EnemyDie1"));
+        SoundLibrary.sounds.Add("enemy_shoot", Content.Load<SoundEffect>("Sounds/EnemyFire1"));
 
         //Load music.
         MusicLibrary.songs.Add("theme_song", Content.Load<Song>("Music/JXSilverTheme2025"));

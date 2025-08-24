@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <SourceFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/Sounds/PlayerBomb2.wav</SourceFile>
+  <SourceTime>2025-01-04T15:22:04.5611594-05:00</SourceTime>
+  <DestFile>c:/Users/dell/Monogame/JXSilver/JXSilver/Content/bin/DesktopGL/Sounds/PlayerBomb2.xnb</DestFile>
+  <DestTime>2025-08-23T21:22:48.4607924-04:00</DestTime>
+  <Importer>WavImporter</Importer>
+  <ImporterTime>2024-08-16T13:05:56-04:00</ImporterTime>
+  <Processor>SoundEffectProcessor</Processor>
+  <ProcessorTime>2024-08-16T13:05:56-04:00</ProcessorTime>
+  <Parameters>
+    <Key>Quality</Key>
+    <Value>Best</Value>
+  </Parameters>
+  <Dependencies />
+  <BuildAsset />
+  <BuildOutput />
+</PipelineBuildEvent>

@@ -50,6 +50,18 @@
 /processorParam:TextureFormat=Compressed
 /build:GameFont.spritefont
 
+#begin JX-Jets.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:JX-Jets.png
+
 #begin JXDisplayBar.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -189,17 +201,65 @@
 /processorParam:TextureFormat=Compressed
 /build:SmallNumbers.spritefont
 
+#begin Sounds/Accept.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Accept.wav
+
+#begin Sounds/Cursor1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Cursor1.wav
+
 #begin Sounds/EnemyDie1.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/EnemyDie1.wav
 
+#begin Sounds/EnemyFire1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/EnemyFire1.wav
+
+#begin Sounds/EnemyFireBig.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/EnemyFireBig.wav
+
 #begin Sounds/EnemyHit.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/EnemyHit.wav
+
+#begin Sounds/PlayerBomb1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/PlayerBomb1.wav
+
+#begin Sounds/PlayerBomb2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/PlayerBomb2.wav
+
+#begin Sounds/PlayerBomb3.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/PlayerBomb3.wav
+
+#begin Sounds/PlayerBomb4.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/PlayerBomb4.wav
 
 #begin Sounds/PlayerShoot1.wav
 /importer:WavImporter
@@ -224,6 +284,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:Sounds/PlayerShoot4.wav
+
+#begin Sounds/Powerup.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Powerup.wav
 
 #begin StarfieldTiles.png
 /importer:TextureImporter

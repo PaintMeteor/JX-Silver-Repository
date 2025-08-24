@@ -49,6 +49,7 @@ public class GameState
 
             bool has_firing_sound = a.ContainsKey("firing_sound");
             bool has_input_controls = a.ContainsKey("input_controls");
+            bool has_controls = a.ContainsKey("controls");
             bool has_position = a.ContainsKey("position");
             bool has_z_index = a.ContainsKey("z-index");
             bool has_topdown_movement = a.ContainsKey("topdown_movement");
@@ -72,6 +73,20 @@ public class GameState
             bool has_delete_at_margin = a.ContainsKey("delete_at_margin");
             bool has_death_explosion = a.ContainsKey("death_explosion");
             bool has_death_sound = a.ContainsKey("death_sound");
+
+            bool has_AI1 = a.ContainsKey("AI1");
+            bool has_AI2 = a.ContainsKey("AI2");
+
+            //Enemy AI.
+            if (has_AI1)
+            {
+                AI.AI.process_AI1(ref a, dt);
+            }
+            if (has_AI2)
+            {
+                AI.AI.process_AI2(ref a, dt);
+            }
+            
 
             //Animation Loop;
             if (has_loop_animation)
@@ -151,8 +166,11 @@ public class GameState
                             {
                                 {"level", 1}
                             };
-                            Dictionary<string, object> obox = Enemy.EnemyLibrary.OrangeBox(config);
-                            sceneSpace.Add(obox);
+                            string[] objects = (string[])attributes["objects"];
+                            int objects_size = objects.Count();
+                            string choice = objects[r.Next() % objects_size];
+                            Dictionary<string, object> en = Spawner.getEntity(choice);
+                            sceneSpace.Add(en);
 
                         }
                         cd[0] = 0;
@@ -200,9 +218,11 @@ public class GameState
 
 
                 //Use input controls.
-                if (has_input_controls)
+                if (has_input_controls || has_controls)
                 {
-                    input_control = (float[])a["input_controls"];
+                    if (has_input_controls) {input_control = (float[])a["input_controls"];}
+                    if (has_controls) {input_control = (float[])a["controls"];}
+                    
                     float[] pos = (float[])a["position"];
                     float[] normal = FunctionLibrary.normalize(input_control[0], input_control[1]);
                     float length = Math.Abs(normal[0]) + Math.Abs(normal[1]);
@@ -607,239 +627,7 @@ public class GameState
             }
 
             //Draw sprite.
-            if (has_sprite && has_position)
-            {
-
-                float[] pos = (float[])a["position"];
-                float rot = 0;
-                float[] cam_offset = new float[2] { 0, 0 };
-                if (has_rotation)
-                {
-                    rot = (float)a["rotation"];
-                }
-
-                if (has_scroll)
-                {
-                    if ((bool)a["scroll_allowed"] == true) { cam_offset = new float[2] { GlobalStuff.view[0], GlobalStuff.view[1] }; }
-                }
-
-                string sprite = (string)a["sprite"];
-
-                //Mandragora.
-                if (sprite == "mandragora_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    SpriteEffects[] effects = [SpriteEffects.None, SpriteEffects.None, SpriteEffects.FlipHorizontally];
-                    int frame_idx = 0;
-                    if (has_tilt_frames)
-                    {
-                        frame_idx = (int)a["tilt_frame"];
-                    }
-
-
-
-                    spriteBatch.Draw(SpriteLibrary.player_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 16, 16),
-                    new Microsoft.Xna.Framework.Rectangle(Math.Abs(Math.Sign(frame_idx)) * 16, 0, 16, 16),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(8, 8),
-                    effects[frame_idx + 1], layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Copernicus
-                if (sprite == "copernicus_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    SpriteEffects[] effects = [SpriteEffects.None, SpriteEffects.None, SpriteEffects.FlipHorizontally];
-                    int frame_idx = 0;
-                    if (has_tilt_frames)
-                    {
-                        frame_idx = (int)a["tilt_frame"];
-                    }
-
-
-
-                    spriteBatch.Draw(SpriteLibrary.player2_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 16, 16),
-                    new Microsoft.Xna.Framework.Rectangle(Math.Abs(Math.Sign(frame_idx)) * 16, 0, 16, 16),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(8, 8),
-                    effects[frame_idx + 1], layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Mondragon.
-                if (sprite == "mondragon_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    SpriteEffects[] effects = [SpriteEffects.None, SpriteEffects.None, SpriteEffects.FlipHorizontally];
-                    int frame_idx = 0;
-                    if (has_tilt_frames)
-                    {
-                        frame_idx = (int)a["tilt_frame"];
-                    }
-
-
-
-                    spriteBatch.Draw(SpriteLibrary.player3_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 16, 16),
-                    new Microsoft.Xna.Framework.Rectangle(Math.Abs(Math.Sign(frame_idx)) * 16, 0, 16, 16),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(8, 8),
-                    effects[frame_idx + 1], layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                if (sprite == "pottenger_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    SpriteEffects[] effects = [SpriteEffects.None, SpriteEffects.None, SpriteEffects.FlipHorizontally];
-                    int frame_idx = 0;
-                    if (has_tilt_frames)
-                    {
-                        frame_idx = (int)a["tilt_frame"];
-                    }
-
-
-
-                    spriteBatch.Draw(SpriteLibrary.player4_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 16, 16),
-                    new Microsoft.Xna.Framework.Rectangle(Math.Abs(Math.Sign(frame_idx)) * 16, 0, 16, 16),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(8, 8),
-                    effects[frame_idx + 1], layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Orangebox.
-                if (sprite == "orangebox_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.orangebox_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 12, 8),
-                    new Microsoft.Xna.Framework.Rectangle(0, 0, 12, 8),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(6, 4), SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Biviolum
-                if (sprite == "biviolum_sprite")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.biviolum_tex,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 20, 16),
-                    new Microsoft.Xna.Framework.Rectangle(0, 0, 20, 16),
-                    Microsoft.Xna.Framework.Color.White, rot - (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(10, 8),
-                    SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Bullets of the Mandragora.
-                if (sprite == "bullets_01")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    //Process the animation.
-                    int frame = 0;
-                    if (has_loop_animation)
-                    {
-                        float[] anim_loop = (float[])a["loop_animation"];
-                        frame = (int)anim_loop[0];
-                    }
-
-
-                    spriteBatch.Draw(SpriteLibrary.bullet_atlas,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 6, 10),
-                    new Microsoft.Xna.Framework.Rectangle(frame * 6, 32, 6, 10),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(3, 5),
-                    SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Bullets of the Copernicus.
-                if (sprite == "bullets_02")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.bullet_atlas,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 5, 7),
-                    new Microsoft.Xna.Framework.Rectangle(0, 8, 5, 7),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(3, 7),
-                    SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Bullets of the Mondragon.
-                if (sprite == "bullets_03")
-                {
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.bullet_atlas,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 8, 10),
-                    new Microsoft.Xna.Framework.Rectangle(33, 0, 8, 10),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(4, 5),
-                    SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Bullets of the Pottenger.
-                if (sprite == "bullets_04")
-                {
-
-                    //Process the animation.
-                    int frame = 0;
-                    if (has_loop_animation)
-                    {
-                        float[] anim_loop = (float[])a["loop_animation"];
-                        frame = (int)anim_loop[0];
-                    }
-
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.bullet_atlas,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 10, 12),
-                    new Microsoft.Xna.Framework.Rectangle(42 + (frame * 10), 0, 10, 12),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(5, 6),
-                    SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-                //Fire particles.
-                if (sprite == "explosion_particle")
-                {
-
-                    int coords = 0;
-                    if (has_loop_animation)
-                    {
-                        float[] loop = (float[])a["loop_animation"];
-                        coords = (int)loop[0];
-                    }
-
-
-                    spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect_to_use, blendState: BlendState.NonPremultiplied);
-                    spriteBatch.Draw(SpriteLibrary.explosion,
-                    new Microsoft.Xna.Framework.Rectangle(
-                    (int)pos[0] - (int)cam_offset[0], (int)pos[1] - (int)cam_offset[1], 24, 24),
-                    new Microsoft.Xna.Framework.Rectangle(coords * 24, 0, 24, 24),
-                    Microsoft.Xna.Framework.Color.White, rot + (float)Math.PI / 2,
-                    new Microsoft.Xna.Framework.Vector2(12, 12), SpriteEffects.None, layerDepth: 1);
-                    spriteBatch.End();
-                }
-
-            }
+            Sprite.Sprite.renderSprite(spriteBatch, a, effect_to_use);
 
             //Draw health bar.
             if (has_health_bar && has_position && has_HP)

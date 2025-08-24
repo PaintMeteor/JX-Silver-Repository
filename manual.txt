@@ -29,6 +29,13 @@
         {"damage", 5},
     }
 
+    Advantages of using the dictionary approach:
+    - Serializable internal members.
+    
+    Drawbacks of using the dictionary approach:
+    - Can't function without a key member in play.
+    
+
     Converting: (type)object.
 
     Look through the code to see how I made it.

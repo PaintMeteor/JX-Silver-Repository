@@ -51,3 +51,13 @@ C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Music\JXSilver
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverRedone.xnb
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JXSilverUI.xnb
 C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\SmallNumbers.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\Accept.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\Cursor1.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\EnemyFire1.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\EnemyFireBig.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\Powerup.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\JX-Jets.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\PlayerBomb1.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\PlayerBomb2.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\PlayerBomb3.xnb
+C:\Users\dell\Monogame\JXSilver\JXSilver\bin\Debug\net8.0\Content\Sounds\PlayerBomb4.xnb

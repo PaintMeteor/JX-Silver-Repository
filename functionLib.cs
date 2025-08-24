@@ -35,7 +35,7 @@ public class FunctionLibrary()
         {
             if (a.ContainsKey("groups"))
             {
-                List<string> groups = (List<string>)a["groups"];
+                HashSet<string> groups = (HashSet<string>)a["groups"];
 
                 if (groups.Contains(name))
                 {
@@ -96,6 +96,15 @@ public class FunctionLibrary()
         return (float)Math.Sqrt(x * x + y * y);
     }
 
+    public static float deg2Rad(float x)
+    {
+        return (float)(Math.PI / 180) * x;
+    }
+
+    public static float rad2Deg(float x)
+    {
+        return (float)(180 / Math.PI) * x;
+    }
     public static void new_scene(GameState next)
     {
         GlobalStuff.gameStateStack.Push(next);
@@ -111,42 +120,18 @@ public class FunctionLibrary()
     {
         Dictionary<string, object> def = new Dictionary<string, object>();
 
-        if (val == "mandragora_bullets")
+        Dictionary<string, Dictionary<string, object>> bulletPairs = new Dictionary<string, Dictionary<string, object>>()
         {
-            Dictionary<string, object> b = Bullets.BulletCreator.MandragoraBullet();
-            b.Add("position", new float[2] { 0, 0 });
-            b.Add("rotation", (float)-Math.PI / 2);
+            {"mandragora_bullets", BulletCreator.MandragoraBullet()},
+            {"copernicus_bullets", BulletCreator.CopernicusBullet()},
+            {"mondragon_bullets", BulletCreator.MondragonBullet()},
+            {"pottenger_bullets", BulletCreator.PottengerBullet()},
+            {"enemy_bullet1", BulletCreator.EnemyBullet()}
+        };
 
-            return b;
-        }
+        Dictionary<string, object> choice = bulletPairs.GetValueOrDefault(val, def);
 
-        if (val == "copernicus_bullets")
-        {
-            Dictionary<string, object> b = Bullets.BulletCreator.CopernicusBullet();
-            b.Add("position", new float[2] { 0, 0 });
-            b.Add("rotation", (float)-Math.PI / 2);
-
-            return b;
-        }
-
-        if (val == "mondragon_bullets")
-        {
-            Dictionary<string, object> b = Bullets.BulletCreator.MondragonBullet();
-            b.Add("position", new float[2] { 0, 0 });
-            b.Add("rotation", (float)-Math.PI / 2);
-
-            return b;
-        }
-
-        if (val == "pottenger_bullets")
-        {
-            Dictionary<string, object> b = Bullets.BulletCreator.PottengerBullet();
-            b.Add("position", new float[2] { 0, 0 });
-            b.Add("rotation", (float)-Math.PI / 2);
-
-            return b;
-        }
-        return def;
+        return choice;
     }
 
     public static float[] normalize(float x, float y)

@@ -75,7 +75,7 @@ public class PlayerCreator
         res.Add("entity_index", 0);
 
         //Stay within the screen.
-        res.Add("bounds", new float[4] { 0, 0, 192, 400 });
+        res.Add("bounds", new float[4] { 0, 0, 256, 400 });
 
         //Allow the sprite to change frames with a tilt frame.
         res.Add("tilt_frame", (int)0);
@@ -128,7 +128,7 @@ public class PlayerCreator
         res.Add("scroll_allowed", true);
 
         //Stay within the screen.
-        res.Add("bounds", new float[4] { 0, 0, 192, 400 });
+        res.Add("bounds", new float[4] { 0, 0, 256, 400 });
 
         //Allow the sprite to change frames with a tilt frame.
         res.Add("tilt_frame", (int)0);
@@ -182,7 +182,7 @@ public class PlayerCreator
         res.Add("scroll_allowed", true);
 
         //Stay within the screen.
-        res.Add("bounds", new float[4] { 0, 0, 192, 400 });
+        res.Add("bounds", new float[4] { 0, 0, 256, 400 });
 
         //Allow the sprite to change frames with a tilt frame.
         res.Add("tilt_frame", (int)0);
@@ -235,7 +235,7 @@ public class PlayerCreator
         res.Add("scroll_allowed", true);
 
         //Stay within the screen.
-        res.Add("bounds", new float[4] { 0, 0, 192, 400 });
+        res.Add("bounds", new float[4] { 0, 0, 256, 400 });
 
         //Allow the sprite to change frames with a tilt frame.
         res.Add("tilt_frame", (int)0);

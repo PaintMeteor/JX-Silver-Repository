@@ -56,7 +56,7 @@ public class SplashScreen : GameState
         effect.Parameters["reveal_amount"].SetValue(reveal[0]);
         effect.Parameters["alpha"].SetValue(alpha[0]);
         spriteBatch.Begin(samplerState: SamplerState.PointClamp, effect: effect, blendState: BlendState.NonPremultiplied);
-        spriteBatch.Draw(this.logo, new Microsoft.Xna.Framework.Vector2((192 / 2) - 32, (400 / 2) - 32), Color.White);
+        spriteBatch.Draw(this.logo, new Microsoft.Xna.Framework.Vector2((WindowProperties.window_width / 2) - 32, (WindowProperties.window_height / 2) - 32), Color.White);
         spriteBatch.End();
     }
 
